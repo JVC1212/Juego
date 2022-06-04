@@ -145,7 +145,7 @@ public class Pregunta1 extends javax.swing.JFrame {
     this.Opcion3.setEnabled (false);
     }                                           
     else{
-     this.jCheckBox4.setEnabled (true);
+     this.jCheckBox2.setEnabled (true);
     this.jCheckBox1.setEnabled(true);
     this.Opcion3.setEnabled (true);   
     }
