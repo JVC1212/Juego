@@ -91,8 +91,8 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- new Pregunta1().setVisible(true);
- this.setVisible(false);
+        new Pregunta1().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

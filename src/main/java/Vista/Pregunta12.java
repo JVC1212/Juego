@@ -1,6 +1,7 @@
 
 package Vista;
-
+//Se importan las librerias que se usan en el codigo
+import Controlador.Juego;
 import java.awt.Frame;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,12 +10,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
+//Creacion de la clase de la pregunta, heredada del JFram
 public class Pregunta12 extends javax.swing.JFrame {
-
+//Se define una proiedad de tipo juego con el nombre controlador
+    public Juego Controlador;
+    //Este es el contructor de la clase pregunta
     public Pregunta12() {
-    initComponents();
+    //Crea todos los componentes visuales
+        initComponents();
+        //Se crea instancia del controlador Juego
+        Controlador = new Juego();
+       /*Se llama a la funcion crearinstanciamodelo la cual crea una instancia
+        dentro de la clase mensajes*/
+        Controlador.crearinstanciamodelo();
         try {
 URL url = new URL("https://i.imgur.com/MNUg4nr.png");
 BufferedImage myPicture = ImageIO.read(url);
@@ -144,7 +154,8 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*Condicion donde se valida que no permita seleccionar multiples opciones
+      se debe hacer con cada uno de los chexBox*/
     private void Opcion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Opcion4ActionPerformed
     if(this.Opcion4.isSelected())
     {    
@@ -158,24 +169,39 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
     this.Opcion3.setEnabled (true);   
     }
     }//GEN-LAST:event_Opcion4ActionPerformed
-
+//Creación y configuración del botón
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane optionPane = new JOptionPane("Advertencia");
+        //Creación de Dialogo para mostrar advertencias
+        JDialog dialog = optionPane.createDialog("");
+        //Se crea variable para controlar visualizacion de Dialogo
+        boolean abrirmensaje = true;
+        //Se valida que ninguna opcion este seleccionada
         if(this.Opcion1.isSelected()==false && this.Opcion2.isSelected()==false
                 && this.Opcion4.isSelected()==false&& this.Opcion3.isSelected()==false){
-            JOptionPane.showMessageDialog(null, "Seleccione una respuesta");                    
+            abrirmensaje = true;
+            dialog = optionPane.createDialog(Controlador.mensajeseleccionerespuesta());
+            //Se valida que la respuesta correcta se halla seleccionado                     
                 }
-            if(this.Opcion1.isSelected()){
-                   JOptionPane.showMessageDialog(null, "Correcto");
-                    new Pregunta13().setVisible(true);
-                    this.setVisible(false);
-       }else{JOptionPane.showMessageDialog(null, "Incorrecto");
-       
+        else if(this.Opcion1.isSelected()){
+            abrirmensaje = false;
+                   //Si la respuesta seleccionada es correcta, pasara a la siguiente pregunta
+            new Pregunta13().setVisible(true);
+            //Cierra la ventana anterior
+            this.setVisible(false);
+       //Configuracion de mensaje cuando la respuesta es incorrecta
+       }else{
+            dialog = optionPane.createDialog(Controlador.mensajeincorrecto());
+         abrirmensaje = true;
             }
-         
+        //Se pconfigura el Dialogo para que aparezca sobre otras ventanas
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(abrirmensaje);
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+/*Condicion donde se valida que no permita seleccionar multiples opciones
+      se debe hacer con cada uno de los chexBox*/
     private void Opcion1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Opcion1ItemStateChanged
     if(this.Opcion1.isSelected())
     {    
@@ -189,7 +215,8 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
     this.Opcion3.setEnabled (true);   
     }
     }//GEN-LAST:event_Opcion1ItemStateChanged
-
+/*Condicion donde se valida que no permita seleccionar multiples opciones
+      se debe hacer con cada uno de los chexBox*/
     private void Opcion2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Opcion2ItemStateChanged
     if(this.Opcion2.isSelected())
     {    
@@ -204,7 +231,8 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
     }
     
     }//GEN-LAST:event_Opcion2ItemStateChanged
-
+/*Condicion donde se valida que no permita seleccionar multiples opciones
+      se debe hacer con cada uno de los chexBox*/
     private void Opcion3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Opcion3ItemStateChanged
    if(this.Opcion3.isSelected())
     {    
@@ -245,21 +273,7 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(Pregunta12.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -267,7 +281,7 @@ Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
-
+//Propiedades de las clases tipo Button y ChexBox
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Imagenn;
     private javax.swing.JCheckBox Opcion1;
